@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import home_page
+from .views import StoryViewSet, CommentViewSet, UserProfileViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("home/", home_page),
     path("api/v1/", include('apifinal.urls'))
+]
+urlpatterns += [
+    path('stories/top/', StoryViewSet.as_view({'get': 'top'}), name='story-top'),
+    path('stories/new/', StoryViewSet.as_view({'get': 'new'}), name='story-new'),
+    path('stories/best/', StoryViewSet.as_view({'get': 'best'}), name='story-best'),
 ]
